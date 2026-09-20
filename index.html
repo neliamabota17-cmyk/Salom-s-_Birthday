@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Salomé · 30</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Italiana&family=Tenor+Sans&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --fundo-escuro:#1a1512;
+    --fundo-medio:#2a211c;
+    --terracota:#b5654a;
+    --dourado:#d4a574;
+    --dourado-claro:#e8c9a0;
+    --creme:#f5ede4;
+    --rosa-poeira:#d4a5a5;
+    --texto-suave:#c9b8a8;
+    --verde:#7fa87f;
+    --vermelho:#c97b7b;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+
+body{
+    font-family:'Tenor Sans',sans-serif;
+    background:var(--fundo-escuro);
+    color:var(--creme);
+    overflow-x:hidden;
+    min-height:100vh;
+    letter-spacing:.02em;
+}
+
+/* INTRO */
+
+#intro{
+    position:relative;
+    height:100vh; width:100%;
+    overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--fundo-escuro);
+}
+
+#intro .overlay{
+    position:absolute; top:0; left:0;
+    width:100%; height:100%;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(181,101,74,.25) 0%, transparent 60%),
+        radial-gradient(circle at 30% 80%, rgba(212,165,116,.15) 0%, transparent 50%),
+        linear-gradient(180deg, #1a1512 0%, #231d19 50%, #1a1512 100%);
+}
+
+#intro .overlay::before,
+#intro .overlay::after{
+    content:'';
+    position:absolute;
+    width:400px; height:400px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.3;
+}
+
+#intro .overlay::before{
+    top:-100px; left:-100px;
+    background:var(--terracota);
+    animation:floatOrb 15s ease-in-out infinite alternate;
+}
+
+#intro .overlay::after{
+    bottom:-100px; right:-100px;
+    background:var(--dourado);
+    animation:floatOrb 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatOrb{
+    from{ transform:translate(0,0) scale(1); }
+    to{ transform:translate(60px,60px) scale(1.15); }
+}
+
+.intro-content{
+    position:relative; z-index:2;
+    text-align:center;
+    padding:40px 30px;
+    max-width:600px;
+    animation:fadeInUp 1.8s ease-out;
+}
+
+@keyframes fadeInUp{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.intro-marca{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:11px; letter-spacing:.6em;
+    text-transform:uppercase;
+    color:var(--dourado);
+    margin-bottom:30px;
+    position:relative;
+    display:inline-block;
+    padding:0 25px;
+}
+
+.intro-marca::before, .intro-marca::after{
+    content:''; position:absolute;
+    top:50%; width:18px; height:1px;
+    background:var(--dourado);
+}
+.intro-marca::before{left:0;}
+.intro-marca::after{right:0;}
+
+.intro-nome{
+    font-family:'Italiana',serif;
+    font-size:clamp(72px,18vw,120px);
+    line-height:.9; color:var(--creme);
+    margin:20px 0 0;
+    text-shadow:0 4px 40px rgba(0,0,0,.6);
+}
+
+.intro-30{
+    font-family:'Mrs Saint Delafield',cursive;
+    font-size:clamp(90px,24vw,150px);
+    color:var(--dourado);
+    line-height:.7; margin-top:-10px;
+    text-shadow:0 0 60px rgba(212,165,116,.5);
+}
+
+.intro-frase{
+    font-family:'Fraunces',serif;
+    font-weight:300; font-style:italic;
+    font-size:17px; line-height:1.8;
+    color:var(--creme);
+    margin-top:40px; opacity:.95;
+    text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+
+.intro-frase span{
+    display:block; font-size:13px;
+    letter-spacing:.3em; text-transform:uppercase;
+    font-style:normal; color:var(--dourado-claro);
+    margin-top:15px;
+}
+
+.btn-enter{
+    margin-top:45px;
+    padding:18px 45px;
+    background:transparent;
+    border:1px solid var(--dourado);
+    color:var(--dourado);
+    font-family:'Tenor Sans',sans-serif;
+    font-size:12px; letter-spacing:.4em;
+    text-transform:uppercase;
+    cursor:pointer; transition:all .5s ease;
+    position:relative; overflow:hidden;
+    z-index:1;
+}
+
+.btn-enter::before{
+    content:''; position:absolute;
+    top:0; left:-100%; width:100%; height:100%;
+    background:var(--dourado);
+    transition:left .5s ease; z-index:-1;
+}
+
+.btn-enter:hover{ color:var(--fundo-escuro); }
+.btn-enter:hover::before{ left:0; }
+
+/* MAIN */
+
+#main{
+    display:none; min-height:100vh;
+    position:relative;
+    background:var(--fundo-escuro);
+}
+
+#main::before{
+    content:''; position:fixed;
+    top:0; left:0; width:100%; height:100%;
+    background:linear-gradient(180deg, #1a1512 0%, #231d19 30%, #2a211c 70%, #1a1512 100%);
+    z-index:0; pointer-events:none;
+}
+
+.container-convite{
+    max-width:640px; margin:0 auto;
+    padding:60px 28px 80px;
+    position:relative; z-index:1;
+}
+
+/* CABEÇALHO */
+
+.cabecalho{
+    text-align:center;
+    padding-bottom:50px;
+    border-bottom:1px solid rgba(212,165,116,.2);
+    position:relative;
+}
+
+.cabecalho::after{
+    content:'✦'; position:absolute;
+    bottom:-11px; left:50%;
+    transform:translateX(-50%);
+    color:var(--dourado); font-size:16px;
+    background:var(--fundo-escuro); padding:0 15px;
+}
+
+.cabecalho-marca{
+    font-family:'Fraunces',serif;
+    font-size:10px; letter-spacing:.5em;
+    text-transform:uppercase;
+    color:var(--dourado); margin-bottom:25px;
+}
+
+.cabecalho-titulo{
+    font-family:'Italiana',serif;
+    font-size:clamp(56px,14vw,86px);
+    line-height:.95; color:var(--creme);
+    text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+
+.cabecalho-sub{
+    font-family:'Mrs Saint Delafield',cursive;
+    font-size:clamp(64px,16vw,92px);
+    color:var(--dourado);
+    line-height:.8; margin-top:-8px;
+    text-shadow:0 0 40px rgba(212,165,116,.4);
+}
+
+.cabecalho-evento{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--texto-suave);
+    margin-top:30px;
+}
+
+/* SECÇÕES */
+
+.secção{ padding:55px 0; position:relative; }
+
+.secção-titulo{
+    font-family:'Fraunces',serif;
+    font-weight:300; font-size:11px;
+    letter-spacing:.5em; text-transform:uppercase;
+    color:var(--dourado); text-align:center;
+    margin-bottom:35px; position:relative;
+}
+
+.secção-titulo::before, .secção-titulo::after{
+    content:''; display:inline-block;
+    width:30px; height:1px;
+    background:var(--dourado);
+    vertical-align:middle;
+    margin:0 15px; opacity:.5;
+}
+
+/* FOTO + FALAS */
+
+.foto-secção{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:40px;
+}
+
+.foto-moldura{
+    position:relative;
+    width:100%;
+    max-width:340px;
+    aspect-ratio:3/4;
+    border-radius:4px;
+    overflow:hidden;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.6),
+        0 0 0 1px rgba(212,165,116,.3),
+        0 0 0 8px var(--fundo-escuro),
+        0 0 0 9px rgba(212,165,116,.2);
+    animation:fotoReveal 1.5s ease-out;
+}
+
+@keyframes fotoReveal{
+    from{ opacity:0; transform:scale(.95) translateY(20px); }
+    to{ opacity:1; transform:scale(1) translateY(0); }
+}
+
+.foto-moldura img{
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center top;
+    display:block;
+    filter:brightness(1.02) contrast(1.02);
+    transition:transform .8s ease;
+}
+
+.foto-moldura:hover img{
+    transform:scale(1.03);
+}
+
+.foto-moldura::after{
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    background:linear-gradient(180deg, transparent 60%, rgba(26,21,18,.4) 100%);
+    pointer-events:none;
+}
+
+.foto-cantos{
+    position:absolute;
+    top:12px; left:12px; right:12px; bottom:12px;
+    border:1px solid rgba(212,165,116,.3);
+    pointer-events:none;
+    z-index:2;
+}
+
+.foto-cantos::before,
+.foto-cantos::after{
+    content:'';
+    position:absolute;
+    width:20px; height:20px;
+    border:1px solid var(--dourado);
+}
+
+.foto-cantos::before{
+    top:-1px; left:-1px;
+    border-right:none;
+    border-bottom:none;
+}
+
+.foto-cantos::after{
+    bottom:-1px; right:-1px;
+    border-left:none;
+    border-top:none;
+}
+
+/* FALAS */
+
+.falas{
+    width:100%;
+    max-width:460px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.fala{
+    position:relative;
+    padding:22px 25px 22px 38px;
+    background:linear-gradient(135deg, rgba(181,101,74,.1) 0%, rgba(212,165,116,.05) 100%);
+    border-left:2px solid var(--dourado);
+    border-radius:2px;
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-style:italic;
+    font-size:15.5px;
+    line-height:1.9;
+    color:var(--creme);
+    transition:all .4s ease;
+}
+
+.fala::before{
+    content:'"';
+    position:absolute;
+    top:6px; left:12px;
+    font-family:'Italiana',serif;
+    font-size:42px;
+    color:var(--dourado);
+    line-height:1;
+    opacity:.55;
+}
+
+.fala:hover{
+    background:linear-gradient(135deg, rgba(181,101,74,.16) 0%, rgba(212,165,116,.08) 100%);
+    transform:translateX(4px);
+}
+
+.fala-autor{
+    display:block;
+    margin-top:12px;
+    font-family:'Fraunces',serif;
+    font-style:normal;
+    font-size:10px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--dourado);
+    text-align:right;
+}
+
+/* HISTÓRIA */
+
+.historia{
+    text-align:center;
+    font-family:'Fraunces',serif;
+    font-weight:300; font-size:17px;
+    line-height:2; color:var(--creme);
+}
+
+.historia p{ margin-bottom:22px; }
+
+.historia .abertura{
+    font-family:'Italiana',serif;
+    font-size:clamp(38px,10vw,52px);
+    color:var(--dourado);
+    line-height:1.1; margin-bottom:30px;
+}
+
+.historia .destaque-hum{
+    font-family:'Mrs Saint Delafield',cursive;
+    font-size:56px;
+    color:var(--rosa-poeira);
+    display:block; margin:25px 0; line-height:1;
+}
+
+.historia .final{
+    font-style:italic;
+    color:var(--dourado-claro);
+    margin-top:25px; font-size:19px;
+}
+
+/* VERSÍCULO */
+
+.versiculo{
+    background:linear-gradient(135deg, rgba(181,101,74,.15) 0%, rgba(212,165,116,.08) 100%);
+    border-left:2px solid var(--dourado);
+    padding:35px 30px; margin:20px 0;
+    border-radius:4px;
+}
+
+.versiculo-ref{
+    font-family:'Fraunces',serif;
+    font-size:11px; letter-spacing:.4em;
+    text-transform:uppercase;
+    color:var(--dourado); margin-bottom:18px;
+}
+
+.versiculo-texto{
+    font-family:'Fraunces',serif;
+    font-style:italic; font-weight:300;
+    font-size:16px; line-height:2;
+    color:var(--creme);
+}
+
+/* INFO */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:35px;
+}
+
+.info-item{ display:flex; align-items:flex-start; gap:20px; }
+
+.info-icon{
+    flex-shrink:0; width:44px; height:44px;
+    border:1px solid var(--dourado);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--dourado); font-size:18px;
+    background:rgba(26,21,18,.5);
+}
+
+.info-label{
+    font-family:'Fraunces',serif;
+    font-size:10px; letter-spacing:.35em;
+    text-transform:uppercase;
+    color:var(--dourado); margin-bottom:6px;
+}
+
+.info-valor{
+    font-family:'Fraunces',serif;
+    font-size:19px; color:var(--creme);
+    line-height:1.4;
+}
+
+/* PRESENTES */
+
+.presentes-intro{
+    text-align:center;
+    font-family:'Fraunces',serif;
+    font-weight:300; font-style:italic;
+    font-size:16px; line-height:2;
+    color:var(--texto-suave);
+    margin-bottom:35px;
+}
+
+.presente-categoria{
+    border-top:1px solid rgba(212,165,116,.25);
+    padding:0;
+    transition:all .3s ease;
+    background:rgba(26,21,18,.3);
+    border-radius:4px;
+    margin-bottom:8px; overflow:hidden;
+}
+
+.presente-categoria:last-child{
+    border-bottom:1px solid rgba(212,165,116,.25);
+}
+
+.presente-header{
+    display:flex; justify-content:space-between;
+    align-items:center; user-select:none;
+    padding:20px 22px;
+    transition:background .3s ease;
+    cursor:pointer;
+}
+
+.presente-categoria:hover .presente-header{
+    background:rgba(212,165,116,.08);
+}
+
+.presente-categoria.aberta .presente-header{
+    background:rgba(212,165,116,.12);
+}
+
+.presente-nome{
+    font-family:'Italiana',serif;
+    font-size:24px; color:var(--creme);
+    transition:color .3s ease;
+}
+
+.presente-categoria:hover .presente-nome,
+.presente-categoria.aberta .presente-nome{
+    color:var(--dourado);
+}
+
+.presente-toggle{
+    color:var(--dourado); font-size:22px;
+    transition:transform .4s ease;
+    width:30px; height:30px;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--dourado);
+    border-radius:50%; line-height:1;
+}
+
+.presente-categoria.aberta .presente-toggle{
+    transform:rotate(45deg);
+    background:var(--dourado);
+    color:var(--fundo-escuro);
+}
+
+.presente-lista{
+    max-height:0; overflow:hidden;
+    transition:max-height .5s ease, padding .5s ease;
+    padding:0 22px;
+}
+
+.presente-categoria.aberta .presente-lista{
+    max-height:1000px;
+    padding:0 22px 20px;
+}
+
+.presente-lista ul{
+    list-style:none; padding:0;
+    border-top:1px solid rgba(212,165,116,.2);
+    padding-top:15px;
+}
+
+.presente-lista li{
+    font-family:'Fraunces',serif;
+    font-weight:300; font-size:15px;
+    color:var(--texto-suave);
+    padding:11px 0 11px 25px;
+    position:relative; line-height:1.6;
+    border-bottom:1px dotted rgba(212,165,116,.15);
+}
+
+.presente-lista li:last-child{ border-bottom:none; }
+
+.presente-lista li::before{
+    content:'◆'; position:absolute;
+    left:0; top:12px;
+    color:var(--dourado); font-size:8px;
+}
+
+.presente-lista li.reservado{ opacity:.6; }
+
+.presente-lista li.reservado::before{
+    content:'✓'; color:var(--verde); font-size:12px;
+}
+
+.presente-lista li.reservado .nome-presente{
+    text-decoration:line-through;
+    color:#8a7a6a;
+}
+
+.presente-lista li .quem-reservou{
+    display:block; font-size:11px;
+    color:var(--verde);
+    letter-spacing:.05em;
+    margin-top:4px; font-style:italic;
+}
+
+.presente-lista li .disponivel-tag{
+    display:block; font-size:11px;
+    color:var(--dourado);
+    letter-spacing:.05em;
+    margin-top:4px; font-style:italic;
+    opacity:.8;
+}
+
+/* CONFIRMAÇÃO */
+
+.confirmacao{
+    text-align:center;
+    padding:50px 30px;
+    background:linear-gradient(135deg, rgba(181,101,74,.15) 0%, rgba(26,21,18,.6) 100%);
+    border:1px solid rgba(212,165,116,.25);
+    border-radius:4px;
+    margin-top:30px;
+}
+
+.confirmacao-titulo{
+    font-family:'Italiana',serif;
+    font-size:34px; color:var(--creme);
+    margin-bottom:18px;
+}
+
+.confirmacao-texto{
+    font-family:'Fraunces',serif;
+    font-weight:300; font-style:italic;
+    font-size:15px; line-height:1.9;
+    color:var(--texto-suave);
+    margin-bottom:30px;
+}
+
+.btn-confirmar{
+    display:inline-flex; align-items:center; gap:12px;
+    padding:18px 40px;
+    background:var(--dourado);
+    color:var(--fundo-escuro);
+    border:none;
+    font-family:'Tenor Sans',sans-serif;
+    font-size:12px; letter-spacing:.35em;
+    text-transform:uppercase;
+    cursor:pointer; transition:all .4s ease;
+}
+
+.btn-confirmar:hover{
+    background:var(--dourado-claro);
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(212,165,116,.4);
+}
+
+/* ENCERRAMENTO */
+
+.encerramento{
+    text-align:center;
+    padding:70px 20px 40px;
+    border-top:1px solid rgba(212,165,116,.15);
+    position:relative; margin-top:50px;
+}
+
+.encerramento::before{
+    content:'✦'; position:absolute;
+    top:-11px; left:50%;
+    transform:translateX(-50%);
+    color:var(--dourado); font-size:16px;
+    background:var(--fundo-escuro); padding:0 15px;
+}
+
+.encerramento-nome{
+    font-family:'Italiana',serif;
+    font-size:clamp(52px,13vw,72px);
+    color:var(--creme); line-height:1;
+}
+
+.encerramento-30{
+    font-family:'Mrs Saint Delafield',cursive;
+    font-size:clamp(60px,15vw,80px);
+    color:var(--dourado); line-height:.8;
+}
+
+.encerramento-texto{
+    font-family:'Fraunces',serif;
+    font-weight:300; font-style:italic;
+    font-size:16px; line-height:2;
+    color:var(--texto-suave);
+    margin:35px auto; max-width:440px;
+}
+
+.encerramento-assinatura{
+    font-family:'Mrs Saint Delafield',cursive;
+    font-size:52px; color:var(--dourado);
+    margin-top:25px;
+}
+
+.encerramento-assinatura-label{
+    font-family:'Fraunces',serif;
+    font-size:10px; letter-spacing:.4em;
+    text-transform:uppercase;
+    color:var(--texto-suave);
+    margin-bottom:8px;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center; padding:30px 20px;
+    font-family:'Fraunces',serif;
+    font-size:10px; letter-spacing:.35em;
+    text-transform:uppercase;
+    color:var(--texto-suave);
+    opacity:.6;
+    border-top:1px solid rgba(212,165,116,.1);
+    margin-top:40px;
+    position:relative; z-index:1;
+}
+
+/* MODAL */
+
+.modal-content{
+    background:var(--fundo-medio);
+    border:1px solid rgba(212,165,116,.3);
+    border-radius:4px;
+    color:var(--creme);
+}
+
+.modal-header{
+    border-bottom:1px solid rgba(212,165,116,.2);
+    padding:25px 30px;
+}
+
+.modal-title{
+    font-family:'Italiana',serif;
+    font-size:26px; color:var(--dourado);
+}
+
+.modal-body{ padding:30px; max-height:70vh; overflow-y:auto; }
+
+.modal-footer{
+    border-top:1px solid rgba(212,165,116,.2);
+    padding:20px 30px;
+}
+
+.form-label{
+    font-family:'Fraunces',serif;
+    font-size:10px; letter-spacing:.35em;
+    text-transform:uppercase;
+    color:var(--dourado);
+    margin-bottom:8px; display:block;
+}
+
+.form-control{
+    background:rgba(245,237,228,.05);
+    border:1px solid rgba(212,165,116,.25);
+    color:var(--creme);
+    border-radius:2px;
+    padding:14px 16px;
+    font-family:'Fraunces',serif;
+    font-weight:300; font-size:15px;
+    width:100%;
+}
+
+.form-control:focus{
+    background:rgba(245,237,228,.08);
+    border-color:var(--dourado);
+    box-shadow:0 0 0 2px rgba(212,165,116,.15);
+    color:var(--creme); outline:none;
+}
+
+.form-control::placeholder{
+    color:rgba(201,184,168,.5);
+    font-style:italic;
+}
+
+.btn-close{
+    filter:invert(1) brightness(.7);
+    opacity:.7;
+}
+
+.btn-modal-cancelar{
+    background:transparent;
+    border:1px solid rgba(212,165,116,.3);
+    color:var(--texto-suave);
+    padding:12px 24px;
+    font-family:'Tenor Sans',sans-serif;
+    font-size:11px; letter-spacing:.3em;
+    text-transform:uppercase;
+    transition:.3s; cursor:pointer;
+}
+
+.btn-modal-cancelar:hover{
+    border-color:var(--dourado);
+    color:var(--dourado);
+}
+
+.btn-modal-confirmar{
+    background:var(--dourado);
+    border:none; color:var(--fundo-escuro);
+    padding:12px 30px;
+    font-family:'Tenor Sans',sans-serif;
+    font-size:11px; letter-spacing:.3em;
+    text-transform:uppercase;
+    transition:.3s; cursor:pointer;
+}
+
+.btn-modal-confirmar:hover{
+    background:var(--dourado-claro);
+}
+
+/* SELEÇÃO DE PRESENTE NO MODAL */
+
+.presente-escolha{
+    display:flex; align-items:center; gap:12px;
+    padding:12px 14px;
+    background:rgba(245,237,228,.04);
+    border:1px solid rgba(212,165,116,.2);
+    border-radius:3px;
+    margin-bottom:8px;
+    cursor:pointer;
+    transition:all .3s ease;
+}
+
+.presente-escolha:hover{
+    background:rgba(212,165,116,.08);
+    border-color:rgba(212,165,116,.4);
+}
+
+.presente-escolha.selecionado{
+    background:rgba(212,165,116,.15);
+    border-color:var(--dourado);
+}
+
+.presente-escolha.reservado{
+    opacity:.45;
+    cursor:not-allowed;
+    background:rgba(26,21,18,.5);
+}
+
+.presente-escolha input[type="radio"]{
+    accent-color:var(--dourado);
+    cursor:pointer; flex-shrink:0;
+}
+
+.presente-escolha .presente-info{
+    flex:1;
+    font-family:'Fraunces',serif;
+    font-weight:300; font-size:14px;
+    color:var(--creme);
+}
+
+.presente-escolha .presente-cat{
+    display:block; font-size:10px;
+    letter-spacing:.2em; text-transform:uppercase;
+    color:var(--dourado);
+    margin-bottom:3px; font-style:normal;
+}
+
+.presente-escolha .presente-status-reservado{
+    display:block; font-size:11px;
+    color:var(--vermelho);
+    font-style:italic; margin-top:3px;
+}
+
+.aviso-presente{
+    font-size:12px;
+    color:var(--texto-suave);
+    font-style:italic; text-align:center;
+    padding:10px;
+    background:rgba(212,165,116,.05);
+    border-radius:3px;
+    margin-bottom:15px; line-height:1.6;
+}
+
+/* MÚSICA BTN */
+
+.music-btn{
+    position:fixed;
+    bottom:25px; right:25px;
+    z-index:9999;
+    width:48px; height:48px;
+    border-radius:50%;
+    background:rgba(26,21,18,.9);
+    border:1px solid var(--dourado);
+    color:var(--dourado);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:18px;
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+.music-btn:hover{
+    background:var(--dourado);
+    color:var(--fundo-escuro);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:480px){
+    .container-convite{ padding:40px 20px 60px; }
+    .cabecalho{ padding-bottom:40px; }
+    .secção{ padding:45px 0; }
+    .info-valor{ font-size:17px; }
+    .versiculo{ padding:28px 22px; }
+    .versiculo-texto{ font-size:15px; }
+    .confirmacao{ padding:40px 22px; }
+    .btn-confirmar{ padding:16px 30px; font-size:11px; letter-spacing:.25em; }
+    .presente-nome{ font-size:22px; }
+    .presente-header{ padding:18px 18px; }
+    .fala{ font-size:15px; padding:18px 20px 18px 32px; }
+    .foto-moldura{ max-width:290px; }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<section id="intro">
+
+<div class="overlay"></div>
+
+<div class="intro-content">
+
+<div class="intro-marca">Corte de Bolo</div>
+
+<h1 class="intro-nome">Salomé</h1>
+
+<div class="intro-30">30</div>
+
+<p class="intro-frase">
+    "Derepente pah!!! Pisquei e trintei"
+    <span>04 · Outubro · 2026</span>
+</p>
+
+<button class="btn-enter" onclick="entrar()">
+    <span>Entrar na Celebração</span>
+</button>
+
+</div>
+
+</section>
+
+<!-- MÚSICA - FICHEIRO LOCAL -->
+
+<audio id="musica" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN -->
+
+<section id="main">
+
+<div class="container-convite">
+
+    <!-- CABEÇALHO -->
+
+    <div class="cabecalho">
+        <div class="cabecalho-marca">Celebração de Vida</div>
+        <h1 class="cabecalho-titulo">Salomé</h1>
+        <div class="cabecalho-sub">30 anos</div>
+        <p class="cabecalho-evento">Corte de Bolo · 04 de Outubro de 2026</p>
+    </div>
+
+    <!-- FOTO + FALAS -->
+
+    <div class="secção">
+
+        <div class="secção-titulo">A Aniversariante</div>
+
+        <div class="foto-secção">
+
+            <div class="foto-moldura">
+                <div class="foto-cantos"></div>
+                <img src="foto-salome.jpg" alt="Salomé">
+            </div>
+
+            <div class="falas">
+
+                <div class="fala">
+                    Há 3 décadas estou nesse mundo, e cada ano me ensinou algo novo sobre viver, amar e agradecer.
+                    <span class="fala-autor">— Salomé</span>
+                </div>
+
+                <div class="fala">
+                    São décadas acompanhadas de muitas emoções, conquistas, perdas e muito aprendizado. Tudo valeu a pena.
+                    <span class="fala-autor">— Salomé</span>
+                </div>
+
+                <div class="fala">
+                    Não há melhor coisa que completar 30 anos com saúde, com fé e com pessoas que amo ao meu lado.
+                    <span class="fala-autor">— Salomé</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- HISTÓRIA -->
+
+    <div class="secção">
+        <div class="historia">
+            <div class="abertura">Derepente pah!!!</div>
+            <p>Pisquei e trintei.<br>Há 3 décadas estou nesse mundo.</p>
+            <p>São décadas acompanhadas de muitas emoções,<br>conquistas, perdas e muito aprendizado.</p>
+            <span class="destaque-hum">Hum!!!</span>
+            <p class="final">Há melhor coisa que completar 30 anos!!!</p>
+        </div>
+    </div>
+
+    <!-- VERSÍCULO -->
+
+    <div class="secção">
+        <div class="secção-titulo">Palavra</div>
+        <div class="versiculo">
+            <div class="versiculo-ref">Salmos 20:6</div>
+            <div class="versiculo-texto">
+                "Agonizará o Senhor ao seu ungido;<br>
+                desde os céus santos o ouvirá,<br>
+                com a força salvadora da sua destra."
+            </div>
+        </div>
+    </div>
+
+    <!-- DETALHES -->
+
+    <div class="secção">
+        <div class="secção-titulo">Detalhes</div>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-icon"><i class="bi bi-calendar-heart"></i></div>
+                <div>
+                    <div class="info-label">Data</div>
+                    <div class="info-valor">04 de Outubro de 2026</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon"><i class="bi bi-cake2"></i></div>
+                <div>
+                    <div class="info-label">Evento</div>
+                    <div class="info-valor">Corte de Bolo</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon"><i class="bi bi-geo-alt"></i></div>
+                <div>
+                    <div class="info-label">Local</div>
+                    <div class="info-valor">Bairro Tsalala<br>Rua da 9ª Esquadra</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRESENTES -->
+
+    <div class="secção">
+        <div class="secção-titulo">Presentes</div>
+        <p class="presentes-intro">
+            A tua presença é o meu maior presente.<br>
+            Mas, se desejares oferecer uma lembrança,<br>
+            escolhe uma das opções ao confirmar presença.
+        </p>
+        <div id="listaPresentes"></div>
+    </div>
+
+    <!-- CONFIRMAÇÃO -->
+
+    <div class="confirmacao">
+        <div class="confirmacao-titulo">Confirmação</div>
+        <p class="confirmacao-texto">
+            A tua presença tornará esta noite<br>ainda mais especial.
+        </p>
+        <button class="btn-confirmar" data-bs-toggle="modal" data-bs-target="#confirmacaoModal">
+            <i class="bi bi-heart-fill"></i> Confirmar Presença
+        </button>
+    </div>
+
+    <!-- ENCERRAMENTO -->
+
+    <div class="encerramento">
+        <h1 class="encerramento-nome">Salomé</h1>
+        <div class="encerramento-30">30 anos</div>
+        <p class="encerramento-texto">
+            A vida torna-se mais bonita quando é celebrada ao lado das pessoas que amamos. Muito obrigada por fazeres parte da minha história.
+        </p>
+        <div class="encerramento-assinatura-label">Com carinho</div>
+        <div class="encerramento-assinatura">Salomé</div>
+    </div>
+
+</div>
+
+<div class="footer">NM Convites Criativos</div>
+
+</section>
+
+<!-- MODAL CONFIRMAÇÃO -->
+
+<div class="modal fade" id="confirmacaoModal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+
+<div class="modal-header">
+<h4 class="modal-title">Confirmar Presença</h4>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+
+<div class="modal-body">
+
+<div class="mb-4">
+<label class="form-label">Nome</label>
+<input id="nomeModal" class="form-control" placeholder="O teu nome">
+</div>
+
+<div class="mb-4">
+<label class="form-label">Escolhe um presente (opcional)</label>
+<div class="aviso-presente">
+Cada presente só pode ser escolhido por uma pessoa.<br>
+Os já reservados aparecem a vermelho.
+</div>
+<div id="listaPresentesModal"></div>
+</div>
+
+<div class="mb-2">
+<label class="form-label">Mensagem (opcional)</label>
+<textarea id="msgModal" rows="3" class="form-control" placeholder="Deixa uma mensagem para a Salomé..."></textarea>
+</div>
+
+</div>
+
+<div class="modal-footer">
+<button class="btn-modal-cancelar" data-bs-dismiss="modal">Cancelar</button>
+<button class="btn-modal-confirmar" onclick="enviarWhatsapp()">Confirmar</button>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- MUSIC BTN -->
+
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+    <i class="bi bi-volume-mute-fill"></i>
+</button>
+
+<!-- SCRIPTS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+/* ==========================================
+MÚSICA - FICHEIRO LOCAL
+========================================== */
+
+let musicaTocando = false;
+
+function entrar(){
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("main").style.display = "block";
+    tocarMusica();
+    window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function tocarMusica(){
+    const audio = document.getElementById("musica");
+    const btn = document.getElementById("musicBtn");
+    audio.volume = 0.45;
+    audio.play().then(() => {
+        musicaTocando = true;
+        btn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
+    }).catch(() => {
+        musicaTocando = false;
+        btn.innerHTML = '<i class="bi bi-volume-mute-fill"></i>';
+    });
+}
+
+function toggleMusic(){
+    const audio = document.getElementById("musica");
+    const btn = document.getElementById("musicBtn");
+    if(audio.paused){
+        audio.play();
+        musicaTocando = true;
+        btn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
+    } else {
+        audio.pause();
+        musicaTocando = false;
+        btn.innerHTML = '<i class="bi bi-volume-mute-fill"></i>';
+    }
+}
+
+/* ==========================================
+PRESENTES
+========================================== */
+
+const presentesData = [
+    {
+        categoria: "Confeitaria",
+        itens: [
+            "Formas de bolo (quadradas, redondas e rectangulares)",
+            "Bicos de confeitar",
+            "Flue"
+        ]
+    },
+    {
+        categoria: "Casa",
+        itens: [
+            "Taças de champanhe",
+            "Taças de vinho",
+            "Talheres",
+            "Panos de mesa",
+            "Pratos"
+        ]
+    },
+    {
+        categoria: "Artigos Pessoais",
+        itens: [
+            "Pente quente",
+            "Secador",
+            "Bolsas",
+            "Sapatos",
+            "Roupas em geral",
+            "Artigos de makeup",
+            "Pijamas"
+        ]
+    }
+];
+
+let presentesReservados = JSON.parse(localStorage.getItem('presentesReservadosSalome')) || {};
+
+function renderizarPresentes() {
+    const container = document.getElementById('listaPresentes');
+    if(!container) return;
+    let html = '';
+
+    presentesData.forEach((cat) => {
+        html += '<div class="presente-categoria" onclick="toggleCategoria(this)">';
+        html += '<div class="presente-header">';
+        html += '<div class="presente-nome">' + cat.categoria + '</div>';
+        html += '<div class="presente-toggle">+</div>';
+        html += '</div>';
+        html += '<div class="presente-lista"><ul>';
+
+        cat.itens.forEach(item => {
+            const reservado = presentesReservados[item];
+            const disponivel = !reservado;
+            const classeLi = disponivel ? '' : 'reservado';
+
+            html += '<li class="' + classeLi + '">';
+            html += '<span class="nome-presente">' + item + '</span>';
+
+            if (!disponivel) {
+                html += '<span class="quem-reservou">✓ Reservado por ' + reservado + '</span>';
+            } else {
+                html += '<span class="disponivel-tag">◆ Disponível</span>';
+            }
+
+            html += '</li>';
+        });
+
+        html += '</ul></div></div>';
+    });
+
+    container.innerHTML = html;
+}
+
+function renderizarPresentesModal() {
+    const container = document.getElementById('listaPresentesModal');
+    if(!container) return;
+    let html = '';
+
+    presentesData.forEach((cat) => {
+        cat.itens.forEach(item => {
+            const reservado = presentesReservados[item];
+            const disponivel = !reservado;
+            const classeExtra = disponivel ? '' : 'reservado';
+            const disabled = disponivel ? '' : 'disabled';
+
+            html += '<label class="presente-escolha ' + classeExtra + '" onclick="selecionarPresente(this)">';
+            html += '<input type="radio" name="presenteEscolhido" value="' + item + '" ' + disabled + '>';
+            html += '<div class="presente-info">';
+            html += '<span class="presente-cat">' + cat.categoria + '</span>';
+            html += item;
+            if (!disponivel) {
+                html += '<span class="presente-status-reservado">⚠ Já reservado por ' + reservado + '</span>';
+            }
+            html += '</div></label>';
+        });
+    });
+
+    container.innerHTML = html;
+}
+
+function toggleCategoria(elemento){
+    elemento.classList.toggle('aberta');
+}
+
+function selecionarPresente(label){
+    if(label.classList.contains('reservado')) return;
+    document.querySelectorAll('.presente-escolha').forEach(el => el.classList.remove('selecionado'));
+    label.classList.add('selecionado');
+    const radio = label.querySelector('input[type="radio"]');
+    if(radio) radio.checked = true;
+}
+
+/* ==========================================
+MODAL
+========================================== */
+
+const modal = document.getElementById("confirmacaoModal");
+
+modal.addEventListener("show.bs.modal", function() {
+    document.getElementById("msgModal").value = '';
+    document.getElementById("nomeModal").value = '';
+    renderizarPresentesModal();
+});
+
+/* ==========================================
+WHATSAPP
+========================================== */
+
+function enviarWhatsapp() {
+    const nome = document.getElementById("nomeModal").value.trim();
+    const mensagem = document.getElementById("msgModal").value.trim();
+    const presenteRadio = document.querySelector('input[name="presenteEscolhido"]:checked');
+    const presente = presenteRadio ? presenteRadio.value : "";
+
+    if(!nome){
+        alert("Por favor, preenche o teu nome.");
+        return;
+    }
+
+    if(presente){
+        if(presentesReservados[presente]){
+            alert("⚠ Este presente já foi reservado por " + presentesReservados[presente] + ". Por favor, escolhe outro.");
+            renderizarPresentesModal();
+            return;
+        }
+        presentesReservados[presente] = nome;
+        localStorage.setItem('presentesReservadosSalome', JSON.stringify(presentesReservados));
+        renderizarPresentes();
+    }
+
+    let texto = "Olá Salomé! 🌸\n\n" +
+        "Confirmo a minha presença na celebração dos teus 30 anos.\n\n" +
+        "👤 Nome: " + nome + "\n\n" +
+        (presente ? "🎁 Presente: " + presente + "\n\n" : "") +
+        (mensagem ? "💌 Mensagem:\n" + mensagem + "\n\n" : "") +
+        "Até breve! ❤️";
+
+    window.open("https://wa.me/258848543607?text=" + encodeURIComponent(texto), "_blank");
+
+    const modalInstance = bootstrap.Modal.getInstance(document.getElementById("confirmacaoModal"));
+    if(modalInstance) modalInstance.hide();
+}
+
+/* ==========================================
+ANIMAÇÃO
+========================================== */
+
+const elementos = document.querySelectorAll(".secção, .confirmacao, .cabecalho, .encerramento");
+const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+        if(entry.isIntersecting){
+            entry.target.animate([
+                {opacity:0, transform:"translateY(40px)"},
+                {opacity:1, transform:"translateY(0)"}
+            ], {duration:900, fill:"forwards", easing:"ease-out"});
+        }
+    });
+}, {threshold:0.1});
+
+elementos.forEach(function(el){ observer.observe(el); });
+
+/* ==========================================
+INICIALIZAÇÃO
+========================================== */
+
+renderizarPresentes();
+
+</script>
+
+</body>
+
+</html>
